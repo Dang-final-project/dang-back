@@ -1,4 +1,4 @@
-# dang-back
+
 당충전 프로젝트 백엔드
 
 ### 개인 작업환경 세팅
@@ -7,3 +7,4 @@
 ```
 npx sequelize db:create
 ```
+
