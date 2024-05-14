@@ -48,7 +48,7 @@ exports.createToken = async (req, res, next) => {
 
 exports.join = async (req, res, next) => {
     console.log(req.body);
-    const { userid, username, password } = req.body;
+    const { userid, email, password } = req.body;
     try {
         const exUser = await User.findOne({ where: { userid }});
         if (exUser) {
@@ -57,7 +57,7 @@ exports.join = async (req, res, next) => {
         const hash = await bcrypt.hash(password, 10);
         await User.create({
             userid,
-            username,
+            email,
             password: hash
         });
         res.json({
