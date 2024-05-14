@@ -9,5 +9,8 @@ router.post('/auth/join', join);
 // v1/stations
 router.use('/stations', stationRouter);
 
+const authRouter = require('./auth');
+
+router.use('/auth', authRouter);
 
 module.exports = router;
