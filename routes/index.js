@@ -2,14 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { join } = require('../controllers/auth');
 const stationRouter = require('./station');
-
-// POST/V1/auth/join
-router.post('/auth/join', join);
+const authRouter = require('./auth');
 
 // v1/stations
 router.use('/stations', stationRouter);
-
-const authRouter = require('./auth');
 
 router.use('/auth', authRouter);
 
