@@ -18,13 +18,13 @@ exports.createToken = async (req, res, next) => {
                 const accessToken = jwt.sign(
                     { id: user.id, nickname: user.nickname},
                     process.env.JWT_SECRET,
-                    { expiresIn: '1h', issuer: "mini_project", subject: "accessToken"}
+                    { expiresIn: '1h', issuer: "dang_project", subject: "accessToken"}
                 );
 
                 const refreshToken = jwt.sign(
                     { id: user.id, nickname: user.nickname },
                     process.env.JWT_SECRET,
-                    { expiresIn: '7d', issuer: "mini_project", subject: "refreshToken" }
+                    { expiresIn: '7d', issuer: "dang_project", subject: "refreshToken" }
                 );
                 User.update({ refreshToken }, { where : { id : user.id }});
                 if (err) {
@@ -48,16 +48,16 @@ exports.createToken = async (req, res, next) => {
 
 exports.join = async (req, res, next) => {
     console.log(req.body);
-    const { userid, email, password } = req.body;
+    const { email, username, password } = req.body;
     try {
-        const exUser = await User.findOne({ where: { userid }});
+        const exUser = await User.findOne({ where: { email }});
         if (exUser) {
             throw new Error("이미 가입된 이메일입니다.")
         }
         const hash = await bcrypt.hash(password, 10);
         await User.create({
-            userid,
             email,
+            username,
             password: hash
         });
         res.json({
@@ -111,13 +111,13 @@ exports.kakaoLogin = async (req, res, next) => {
                 const accessToken = jwt.sign(
                     { id: user.id, nickname: user.nickname },
                     process.env.JWT_SECRET,
-                    { expiresIn: '1h', issuer: "mini_project", subject: "accessToken" }
+                    { expiresIn: '1h', issuer: "dang_project", subject: "accessToken" }
                 );
 
                 const refreshToken = jwt.sign(
                     { id: user.id, nickname: user.nickname },
                     process.env.JWT_SECRET,
-                    { expiresIn: '7d', issuer: "mini_project", subject: "refreshToken" }
+                    { expiresIn: '7d', issuer: "dang_project", subject: "refreshToken" }
                 );
 
                 User.update({ refreshToken }, { where: { id: user.id } });

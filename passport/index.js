@@ -1,13 +1,13 @@
 const passport = require("passport")
 // const { User } = require("../models")
 const local = require("./local");
-// const jwt = require("./jwt");
-// const kakao = require("./kakao");
+const jwt = require("./jwt");
+const kakao = require("./kakao");
 
 module.exports = () => {
     local();
-    // jwt();
-    // kakao();
+    jwt();
+    kakao();
 
 
     // 전략 성공 시 호출
