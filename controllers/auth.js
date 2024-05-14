@@ -48,16 +48,16 @@ exports.createToken = async (req, res, next) => {
 
 exports.join = async (req, res, next) => {
     console.log(req.body);
-    const { email, nickname, password } = req.body;
+    const { userid, username, password } = req.body;
     try {
-        const exUser = await User.findOne({ where: { email }});
+        const exUser = await User.findOne({ where: { userid }});
         if (exUser) {
             throw new Error("이미 가입된 이메일입니다.")
         }
         const hash = await bcrypt.hash(password, 10);
         await User.create({
-            email,
-            nickname,
+            userid,
+            username,
             password: hash
         });
         res.json({

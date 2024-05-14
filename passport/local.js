@@ -5,13 +5,13 @@ const User = require('../models/user');
 
 module.exports = () => {
     passport.use(new LocalStrategy({
-        usernameField: 'email',
+        usernameField: 'userid',
         passwordField: 'password',
         passReqToCallback: false
-    }, async (email, password, done) => {
+    }, async (userid, password, done) => {
         try {
             // 특정 이메일을 가진 유저를 조회
-            const exUser = await User.findOne({ where : {email}});
+            const exUser = await User.findOne({ where : {userid}});
             // 특정 이메일을 가진 유저가 이미 존재한다면
             if(exUser) {
                 // 현재 입력한 비밀번호와 암호화된 가입된 비밀번호를 비교
