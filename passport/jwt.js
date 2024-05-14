@@ -6,7 +6,7 @@ const JWTStrategy = require('passport-jwt').Strategy;
 module.exports = () => {
     passport.use(new JWTStrategy({
         jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-        // secretOrKey: process.env.JWT_SECRET
+        secretOrKey: process.env.JWT_SECRET
     }, async (jwtPayload, done) => {
         try {
             const user = await User.findOne({ where : { id: jwtPayload.id }});
