@@ -51,3 +51,24 @@ exports.deleteStation = async(req, res, next) => {
         next(err);
     }
 }
+
+exports.writeMemo = async(req, res, next) => {
+    try{
+        const station = await LikeStation.update({
+            memo: req.body.memo
+        },{
+            where : {
+                chrstn_id : req.body.chrstn_id,
+                UserId : req.body.id  
+            }
+        })
+        res.json({
+            code:200,
+            payload: '등록이 완료되었습니다.'
+        });
+
+    }catch(err){
+        console.error(err);
+        next(err);
+    }
+}
