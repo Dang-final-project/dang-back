@@ -15,6 +15,5 @@ router.delete('/remove',deleteStation);
 //메모등록
 router.put('/memo', writeMemo)
 
-//메모삭제
 
 module.exports = router;

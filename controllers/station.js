@@ -6,7 +6,7 @@ exports.getStation = async(req, res, next) => {
     try{
         const likeStations = await LikeStation.findAll({
             where : {userId : req.body.id},
-            attributes: ['chrstn_id']
+            attributes: ['chrstn_id','memo']
         })
         res.json({
             code:200,
