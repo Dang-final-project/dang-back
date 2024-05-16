@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { join, createToken } = require('../controllers/auth');
+const { join, createToken, kakaoLogin, refreshToken } = require('../controllers/auth');
 const passport = require('passport');
 
 
@@ -10,8 +10,12 @@ router.post('/join', join);
 // POST/V1/auth/login
 router.post('/login', createToken);
 
+
+
 // GET/V1/auth/kakao
 router.get('/kakao', passport.authenticate('kakao'))
+router.get('/kakao/callback', kakaoLogin);
+router.get('/refresh', refreshToken);
 
 
 // if -> login need
