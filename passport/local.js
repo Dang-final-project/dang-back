@@ -14,6 +14,7 @@ module.exports = () => {
             const exUser = await User.findOne({ where : { email }});
             // 특정 이메일을 가진 유저가 이미 존재한다면
             if(exUser) {
+                console.log(exUser, 1111111)
                 // 현재 입력한 비밀번호와 암호화된 가입된 비밀번호를 비교
                 const result = await bcrypt.compare(password, exUser.password);
                 // 결과가 true라면 exUser를 넘김
@@ -25,6 +26,7 @@ module.exports = () => {
                 }
             // 애초에 이메일을 가진 유저가 존재하지않는다면 역시 메세지를 넘김
             } else {
+                console.log(exUser, 222222)
                 done(null, false, { message: '가입되지 않은 회원입니다'})
             }
         } catch (err) {
