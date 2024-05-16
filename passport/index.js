@@ -7,7 +7,7 @@ const kakao = require("./kakao");
 module.exports = () => {
     local();
     jwt();
-    //kakao();
+    kakao();
 
 
     // 전략 성공 시 호출
