@@ -5,7 +5,7 @@ const db = require('../models');
 exports.getStation = async(req, res, next) => {
     try{
         const likeStations = await LikeStation.findAll({
-            where : {userId : req.body.id},
+            where : {userId : req.user.id},
             attributes: ['chrstn_id','memo']
         })
         res.json({
@@ -22,7 +22,7 @@ exports.addStation = async(req, res, next) => {
     try{
         const likeStation = await LikeStation.create({
             chrstn_id : req.body.chrstn_id,
-            UserId : req.body.id
+            UserId : req.user.id
         })
         res.json({
             code:200,
@@ -39,7 +39,7 @@ exports.deleteStation = async(req, res, next) => {
         await LikeStation.destroy({
             where: {
                 chrstn_id : req.body.chrstn_id,
-                UserId : req.body.id
+                UserId : req.user.id
             }
         })
         res.json({
@@ -59,7 +59,7 @@ exports.writeMemo = async(req, res, next) => {
         },{
             where : {
                 chrstn_id : req.body.chrstn_id,
-                UserId : req.body.id  
+                UserId : req.user.id  
             }
         })
         res.json({
