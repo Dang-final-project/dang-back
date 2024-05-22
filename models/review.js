@@ -25,7 +25,7 @@ class Review extends Sequelize.Model {
                 sequelize,
                 charset: "utf8",
                 collate: "utf8_general_ci",
-                timestamps: false, //createdAt 자동 생성 막아둠, 컨트롤러에 직접 생성을 선택함
+                timestamps: true, //createdAt 자동 생성 막아둠, 컨트롤러에 직접 생성을 선택함
             }
         );
     }
