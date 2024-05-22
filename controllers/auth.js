@@ -115,17 +115,25 @@ exports.kakaoLogin = async (req, res, next) => {
                 throw new Error(info.message);
             }
             return req.login(user, (err) => {
-                const accessToken = jwt.sign({ id: user.id, nickname: user.nickname }, process.env.JWT_SECRET, {
-                    expiresIn: "1h",
-                    issuer: "dang_project",
-                    subject: "accessToken",
-                });
+                const accessToken = jwt.sign(
+                    { id: user.id, nickname: user.dataValues.username },
+                    process.env.JWT_SECRET,
+                    {
+                        expiresIn: "1h",
+                        issuer: "dang_project",
+                        subject: "accessToken",
+                    }
+                );
 
-                const refreshToken = jwt.sign({ id: user.id, nickname: user.nickname }, process.env.JWT_SECRET, {
-                    expiresIn: "7d",
-                    issuer: "dang_project",
-                    subject: "refreshToken",
-                });
+                const refreshToken = jwt.sign(
+                    { id: user.id, nickname: user.dataValues.username },
+                    process.env.JWT_SECRET,
+                    {
+                        expiresIn: "7d",
+                        issuer: "dang_project",
+                        subject: "refreshToken",
+                    }
+                );
 
                 User.update({ refreshToken }, { where: { id: user.id } });
                 if (err) {
