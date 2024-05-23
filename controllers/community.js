@@ -1,4 +1,26 @@
-const { Report } = require("../models");
+const { User, Report } = require("../models");
+
+exports.getReport = async (req, res, next) => {
+    try {
+        let reports = [];
+        console.log(req.query.userId);
+        reports = await Report.findAll({
+            where: { userId: req.query.userId },
+            include: {
+                model: User,
+                attributes: ["id", "username"],
+            },
+            order: [["createdAt", "DESC"]],
+        });
+        res.json({
+            code: 200,
+            payload: reports,
+        });
+    } catch (err) {
+        console.error(err);
+        next(err);
+    }
+};
 
 exports.writeReport = async (req, res, next) => {
     try {
