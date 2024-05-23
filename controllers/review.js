@@ -25,7 +25,7 @@ exports.writeReview = async (req, res, next) => {
 exports.getReview = async (req, res, next) => {
     try {
         const reviews = await Review.findAll({
-            where: { UserId: req.user.id},
+            // where: { UserId: req.user.id},
             attributes: ['UserId', 'station', 'createdAt', 'starscore', 'content'],
             include: [
                 {
