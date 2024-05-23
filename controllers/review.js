@@ -4,7 +4,6 @@ exports.writeReview = async (req, res, next) => {
     try {
         
         const { station, starScore, content, UserId } = req.body;
-        console.log(UserId);
 
         const newReview = await Review.create({
             station,
@@ -27,7 +26,7 @@ exports.getReview = async (req, res, next) => {
     try {
         const reviews = await Review.findAll({
             where: { UserId: req.user.id},
-            // attributes: ['UserId', 'station', 'created_at', 'starscore', 'content'], // starscore로 수정
+            attributes: ['UserId', 'station', 'createdAt', 'starscore', 'content'],
             include: [
                 {
                     model: User,
