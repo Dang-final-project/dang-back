@@ -16,7 +16,7 @@ exports.createToken = async (req, res, next) => {
             // 정상 로그인
             return req.login(user, (err) => {
                 const accessToken = jwt.sign(
-                    { id: user.id, nickname: user.dataValues.username },
+                    { id: user.id, nickname: user.dataValues.username, email: user.dataValues.email },
                     process.env.JWT_SECRET,
                     {
                         expiresIn: "1h",
@@ -26,7 +26,7 @@ exports.createToken = async (req, res, next) => {
                 );
 
                 const refreshToken = jwt.sign(
-                    { id: user.id, nickname: user.dataValues.username },
+                    { id: user.id, nickname: user.dataValues.username, email: user.dataValues.email },
                     process.env.JWT_SECRET,
                     {
                         expiresIn: "7d",
@@ -89,7 +89,7 @@ exports.refreshToken = async (req, res, next) => {
         }
 
         const newAccessToken = jwt.sign(
-            { id: accessResult.id, nickname: accessResult.nickname },
+            { id: accessResult.id, nickname: accessResult.nickname, email: accessResult.email },
             process.env.JWT_SECRET,
             { expiresIn: "1h", issuer: "mini_project", subject: "accessToken" }
         );
