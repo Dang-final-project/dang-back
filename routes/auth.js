@@ -15,7 +15,7 @@ router.post('/login', createToken);
 // GET/V1/auth/kakao
 router.get('/kakao', passport.authenticate('kakao'))
 router.get('/kakao/callback', kakaoLogin);
-router.get('/refresh', refreshToken);
+router.post('/refresh', refreshToken);
 
 
 // if -> login need

@@ -6,6 +6,7 @@ exports.verifyToken = (req, res, next) => {
             if (authErr) {
                 if (authErr.message === "jwt expired") {
                     authErr.status = 403;
+                    console.log(user);
                 }
                 return next(authErr);
             }
