@@ -19,7 +19,7 @@ exports.createToken = async (req, res, next) => {
                     { id: user.id, nickname: user.dataValues.username, email: user.dataValues.email },
                     process.env.JWT_SECRET,
                     {
-                        expiresIn: "1h",
+                        expiresIn: "30s",
                         issuer: "dang_project",
                         subject: "accessToken",
                     }
@@ -81,6 +81,7 @@ exports.join = async (req, res, next) => {
 exports.refreshToken = async (req, res, next) => {
     try {
         const { accessToken } = req.body;
+        console.log(accessToken);
         const accessResult = jwt.decode(accessToken, process.env.JWT_SECRET);
         const user = await User.findOne({ where: { id: accessResult.id } });
         const refreshResult = jwt.verify(user.refreshToken, process.env.JWT_SECRET);
