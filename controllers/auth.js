@@ -19,7 +19,7 @@ exports.createToken = async (req, res, next) => {
                     { id: user.id, nickname: user.dataValues.username, email: user.dataValues.email },
                     process.env.JWT_SECRET,
                     {
-                        expiresIn: "30s",
+                        expiresIn: "1h",
                         issuer: "dang_project",
                         subject: "accessToken",
                     }
