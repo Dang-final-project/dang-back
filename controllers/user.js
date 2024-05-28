@@ -41,9 +41,9 @@ exports.modifyUser = async (req, res, next) => {
 exports.deleteUser = async (req, res, next) => {
     try {
         await User.destroy({
-            where: { id: req.body.id }
+            where: { id: req.user.id }
         });
-
+        console.log(req.user);
         res.json({
             code: 200,
             message: '사용자 정보 삭제 완료'
