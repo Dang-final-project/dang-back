@@ -19,7 +19,7 @@ exports.createToken = async (req, res, next) => {
                     { id: user.id, nickname: user.dataValues.username, email: user.dataValues.email },
                     process.env.JWT_SECRET,
                     {
-                        expiresIn: "1h",
+                        expiresIn: process.env.ASSESS_TOKEN_EXPIRE,
                         issuer: "dang_project",
                         subject: "accessToken",
                     }
@@ -29,7 +29,7 @@ exports.createToken = async (req, res, next) => {
                     { id: user.id, nickname: user.dataValues.username, email: user.dataValues.email },
                     process.env.JWT_SECRET,
                     {
-                        expiresIn: "7d",
+                        expiresIn: process.env.REFRESH_TOKEN_EXPIRE,
                         issuer: "dang_project",
                         subject: "refreshToken",
                     }
@@ -92,7 +92,7 @@ exports.refreshToken = async (req, res, next) => {
         const newAccessToken = jwt.sign(
             { id: accessResult.id, nickname: accessResult.nickname, email: accessResult.email },
             process.env.JWT_SECRET,
-            { expiresIn: "1h", issuer: "mini_project", subject: "accessToken" }
+            { expiresIn: process.env.ASSESS_TOKEN_EXPIRE, issuer: "mini_project", subject: "accessToken" }
         );
 
         res.json({

@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const bcrypt = require("bcrypt");
 
 exports.getUser = async (req, res, next) => {
     try {
@@ -18,9 +19,10 @@ exports.getUser = async (req, res, next) => {
 
 exports.modifyUser = async (req, res, next) => {
     try {
+        const hash = await bcrypt.hash(req.body.password, 10);
         await User.update(
             {
-                password: req.body.password,
+                password: hash,
                 username: req.body.username,
             },
             {
