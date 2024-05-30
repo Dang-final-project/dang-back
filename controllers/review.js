@@ -23,15 +23,30 @@ exports.writeReview = async (req, res, next) => {
 
 exports.getReview = async (req, res, next) => {
     try {
-        const reviews = await Review.findAll({
-            // where: { UserId: req.user.id},
-            attributes: ['station', 'createdAt', 'starscore', 'content'],
-            include: [
-                {
-                    model: User
-                }
-            ]
-        });
+        let reviews;
+        if (JSON.stringify(req.query) !== "{}") {
+            reviews = await Review.findAll({
+                // where: { UserId: req.user.id},
+                attributes: ['station', 'createdAt', 'starscore', 'content'],
+                include: [
+                    {
+                        model: User
+                    }
+                ],
+                limit: parseInt(req.query.pageSize),
+                offset: parseInt(req.query.pageIndex)
+            });
+        } else {
+            reviews = await Review.findAll({
+                // where: { UserId: req.user.id},
+                attributes: ['station', 'createdAt', 'starscore', 'content'],
+                include: [
+                    {
+                        model: User
+                    }
+                ]
+            });
+        }
         res.json({
             code: 200,
             payload: reviews
