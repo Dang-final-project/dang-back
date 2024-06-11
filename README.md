@@ -5,7 +5,7 @@
 저희 프로젝트는 충전소를 찾기 위해 많은 시간을 소비되는 것을 방지하고 원하는 충전소에 대한 위치와 정보를 손쉽게 얻을 수 있는 서비스를 제공합니다.
 
 ## 2.주요기능
-<a href="https://ibb.co/nnDtQgT"><img src="https://i.ibb.co/nnDtQgT/Screenshot-2024-06-11-at-10-03-39-AM.png" alt="Screenshot-2024-06-11-at-10-03-39-AM" border="0"></a>
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/P9501mR/Screenshot-2024-06-11-at-10-03-39-AM.png" alt="Screenshot-2024-06-11-at-10-03-39-AM" border="0"></a>
 [로그인/회원가입]
 - auth.js 관련 
 - 로컬 회원 가입 시 user 테이블 생성 및 데이터 저장
