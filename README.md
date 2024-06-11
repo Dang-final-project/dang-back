@@ -6,6 +6,7 @@
 
 ## 2.주요기능
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/P9501mR/Screenshot-2024-06-11-at-10-03-39-AM.png" alt="Screenshot-2024-06-11-at-10-03-39-AM" border="0"></a>
+
 [로그인/회원가입]
 - auth.js 관련 
 - 로컬 회원 가입 시 user 테이블 생성 및 데이터 저장
