@@ -12,6 +12,11 @@
 - 로컬 회원 가입 시 user 테이블 생성 및 데이터 저장
 - users 테이블 모델링 : email, username, password, provider, kakaoId, freshToken, creatAt, updateAt, deleteAt
 
+[홈 - 즐겨찾기]
+- likestation.js 관련
+- 즐겨찾기 충전소와 메모 데이터 저장
+- likestations 테이블 모델링 : chrstn_ id, memo, createAt, updateAt, UserId
+
 [커뮤니티 - 후기]
 - review.js 관련
 - reviews 테이블 생성 및 데이터 저장
@@ -23,4 +28,21 @@
 - reports 테이블 모델링 : catNum, staion, content, createAt, updateAt, UserId
 
 [마이페이지 - 개인정보 수정]
-- route
+- modifyuser함수 와 deleteUser 함수 사용
+- users 테이블의 updateAt, delteAt에 데이터 저장
+
+## 3.구조
+
+```
+root/
+  ├─ config/
+  ├─ controllers/
+  ├─ middlewares/
+  ├─ models/
+  ├─ passport/
+  ├─ routes/
+  ├─ App.js
+  ├─ .gitigore  
+  ├─ package.json
+  └─ README.md
+```
